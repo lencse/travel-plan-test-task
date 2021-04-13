@@ -15,6 +15,7 @@ module.exports = {
 
     rules: {
         '@typescript-eslint/indent': ['error', 4],
+        '@typescript-eslint/space-before-function-paren': 'off',
         'padded-blocks': 'off',
         'yoda': ['warn', 'always']
     }
