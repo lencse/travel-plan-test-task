@@ -80,7 +80,7 @@ describe('Main', () => {
         }
     })
 
-    it('Handle duplications in inpt', () => {
+    it('Handle duplications in input', () => {
         const result = main(`
             x =>
             y => z
@@ -92,6 +92,12 @@ describe('Main', () => {
         expect(result.indexOf('y')).toBeGreaterThan(-1)
         expect(result.indexOf('z')).toBeGreaterThan(-1)
         expect(result.indexOf('z')).toBeLessThan(result.indexOf('y'))
+    })
+
+    it('Handle empty input', () => {
+        const result = main(`
+        `)
+        expect(result).toEqual('')
     })
 
 })

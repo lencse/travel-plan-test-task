@@ -5,7 +5,11 @@ export default class InputParser {
 
     public parse (input: string): InputData {
         const result = new InputData()
-        input.trim().split(EOL).forEach(line => {
+        const trimmed = input.trim()
+        if ('' === trimmed) {
+            return result
+        }
+        trimmed.split(EOL).forEach(line => {
             const parts = line.trim().split('=>').map(data => data.trim())
             parts.forEach(dest => {
                 if ('' !== dest) {
