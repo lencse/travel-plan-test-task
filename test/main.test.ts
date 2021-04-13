@@ -100,4 +100,11 @@ describe('Main', () => {
         expect(result).toEqual('')
     })
 
+    it('Case-sensitive destination naming', () => {
+        const result = main(`
+            a => A
+        `)
+        expect(result).toEqual('Aa')
+    })
+
 })
