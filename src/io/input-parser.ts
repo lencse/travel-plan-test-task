@@ -11,11 +11,11 @@ export default class InputParser {
 
     public parse(input: string): InputData {
         const result = new InputData()
-        const trimmed = input.trim()
-        if ('' === trimmed) {
-            return result
-        }
-        trimmed.split(EOL).forEach(line => {
+        input.split(EOL).forEach(line => {
+            const trimmedLine = line.trim()
+            if ('' === trimmedLine) {
+                return
+            }
             const parts = line.trim().split('=>').map(data => data.trim())
             parts.forEach(dest => {
                 if ('' === dest) {

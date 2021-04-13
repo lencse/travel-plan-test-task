@@ -127,4 +127,17 @@ describe('Main', () => {
         expect(result).toEqual('Aa')
     })
 
+    it('Handle newlines', () => {
+        const result = main(`
+            x =>
+            y =>
+            
+            z =>
+        `)
+        expect(result.length).toEqual(3)
+        expect(result.indexOf('x')).toBeGreaterThan(-1)
+        expect(result.indexOf('y')).toBeGreaterThan(-1)
+        expect(result.indexOf('z')).toBeGreaterThan(-1)
+    })
+
 })
