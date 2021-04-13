@@ -20,8 +20,8 @@ describe('Input parser', () => {
             z =>
         `)
         expect(result.get('x')).toEqual([])
-        expect(result.get('y')).toEqual(['z'])
-        expect(result.get('z')).toEqual([])
+        expect(result.get('y')).toEqual([])
+        expect(result.get('z')).toEqual(['y'])
     })
 
 })
