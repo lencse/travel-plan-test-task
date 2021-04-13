@@ -6,6 +6,5 @@ export const main = (input: string): string => {
     const data = parser.parse(input)
     const planner = new Planner()
     const result = planner.plan(data)
-
     return result.asString()
 }

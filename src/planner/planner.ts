@@ -1,18 +1,6 @@
-import { InputData, Destination } from '../io/input-parser'
-
-class PlanResult {
-
-    private readonly destinations: Destination[] = []
-
-    public addDestination(destination: Destination): void {
-        this.destinations.push(destination)
-    }
-
-    public asString(): string {
-        return this.destinations.map(dest => dest.name).join('')
-    }
-
-}
+import Destination from './destination'
+import InputData from './input-data'
+import PlanResult from './result'
 
 export default class Planner {
 
@@ -25,7 +13,9 @@ export default class Planner {
             throw new Error('Circular dependency')
         }
         const next = candidates[0]
-        const nextRemaining = remaining.filter(dest => next.name !== dest.name).map(
+        const nextRemaining = remaining.filter(
+            dest => next.name !== dest.name
+        ).map(
             dest => ({
                 name: dest.name,
                 dependencies: dest.dependencies.filter(
@@ -33,9 +23,6 @@ export default class Planner {
                 )
             })
         )
-        // nextRemaining.forEach(dest => {
-        //     dest.dependencies = dest.dependencies.filter(dep => next.name !== dep)
-        // })
         result.addDestination(next)
         this.step(nextRemaining, result)
     }
