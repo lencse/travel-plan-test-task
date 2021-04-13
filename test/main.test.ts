@@ -80,4 +80,18 @@ describe('Main', () => {
         }
     })
 
+    it('Handle duplications in inpt', () => {
+        const result = main(`
+            x =>
+            y => z
+            y => z
+            z =>
+        `)
+        expect(result.length).toEqual(3)
+        expect(result.indexOf('x')).toBeGreaterThan(-1)
+        expect(result.indexOf('y')).toBeGreaterThan(-1)
+        expect(result.indexOf('z')).toBeGreaterThan(-1)
+        expect(result.indexOf('z')).toBeLessThan(result.indexOf('y'))
+    })
+
 })
