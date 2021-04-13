@@ -50,6 +50,26 @@ describe('Main', () => {
         expect(result.indexOf('u')).toBeLessThan(result.indexOf('x'))
     })
 
+    it('6 destinations with multiple dependencies', () => {
+        const result = main(`
+            u => x
+            v => x
+            w => x
+            u => y
+            v => y
+            w => y
+            x => z
+        `)
+        expect(result.length).toEqual(6)
+        expect(result.indexOf('x')).toBeLessThan(result.indexOf('u'))
+        expect(result.indexOf('x')).toBeLessThan(result.indexOf('v'))
+        expect(result.indexOf('x')).toBeLessThan(result.indexOf('w'))
+        expect(result.indexOf('y')).toBeLessThan(result.indexOf('u'))
+        expect(result.indexOf('y')).toBeLessThan(result.indexOf('v'))
+        expect(result.indexOf('y')).toBeLessThan(result.indexOf('w'))
+        expect(result.indexOf('z')).toBeLessThan(result.indexOf('x'))
+    })
+
     it('Include every mentioned destinations', () => {
         const result = main(`
             x => y
