@@ -37,4 +37,18 @@ describe('Input parser', () => {
         expect(result.filter(dest => 'z' === dest.name)[0]).toEqual({ name: 'z', dependencies: [] })
     })
 
+    it('Throw error on missing destination', () => {
+        const parser = new InputParser()
+        const result = parser.parse(`
+            x =>
+            y =>
+        `)
+        try {
+            result.get('z')
+            fail('Exception not thrown')
+        } catch (e) {
+            expect(e.message).toEqual('Missing destination')
+        }
+    })
+
 })
