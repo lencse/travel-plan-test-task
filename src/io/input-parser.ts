@@ -1,11 +1,11 @@
 import { EOL } from 'os'
 
-interface Destination {
+export interface Destination {
     name: string
     dependencies: string[]
 }
 
-class InputData {
+export class InputData {
 
     private readonly destinations: Map<string, Destination> = new Map<string, Destination>()
 
@@ -49,7 +49,7 @@ export default class InputParser {
                 }
             })
             if ('' !== parts[1]) {
-                result.addDestinationWithDependency(parts[1], parts[0])
+                result.addDestinationWithDependency(parts[0], parts[1])
             }
         })
         return result
