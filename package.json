@@ -1,7 +1,7 @@
 {
     "name": "travel-plan-test-task",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "travel-plan.js",
     "license": "MIT",
     "devDependencies": {
         "@types/jest": "^26.0.22",
