@@ -18,6 +18,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -34,3 +39,11 @@ jobs:
 
     - name: Lint
       run: yarn lint
+
+    - name: Send coverage report
+      if: ${{ matrix.node-version == '14.x' }}
+      run: node_modules/.bin/coveralls < logs/jest/lcov.info
+      env:
+        COVERALLS_SERVICE_NAME: github-actions
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        COVERALLS_GIT_BRANCH: ${{ steps.extract_branch.outputs.branch }}
