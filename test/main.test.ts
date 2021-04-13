@@ -3,7 +3,9 @@ import { main } from '../src/main'
 describe('Main', () => {
 
     it('Return "x"', () => {
-        const result = main('x =>')
+        const result = main(`
+            x =>
+        `)
         expect(result).toEqual('x')
     })
 
@@ -46,6 +48,36 @@ describe('Main', () => {
         expect(result.indexOf('w')).toBeLessThan(result.indexOf('v'))
         expect(result.indexOf('v')).toBeLessThan(result.indexOf('y'))
         expect(result.indexOf('u')).toBeLessThan(result.indexOf('x'))
+    })
+
+    it('Include every mentioned destinations', () => {
+        const result = main(`
+            x => y
+        `)
+        expect(result).toEqual('yx')
+    })
+
+    it('Throw error on circular dependency', () => {
+        try {
+            main(`
+                x => y
+                y => x
+            `)
+            fail('Exception not thrown')
+        } catch (e) {
+            expect(e.message).toEqual('Circular dependency')
+        }
+    })
+
+    it('Throw error on invalid input', () => {
+        try {
+            main(`
+                xx => y
+            `)
+            fail('Exception not thrown')
+        } catch (e) {
+            expect(e.message).toEqual('Invalid destination name: "xx"')
+        }
     })
 
 })

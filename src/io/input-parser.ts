@@ -45,6 +45,9 @@ export default class InputParser {
             const parts = line.trim().split('=>').map(data => data.trim())
             parts.forEach(dest => {
                 if ('' !== dest) {
+                    if (!/^[a-zA-Z]$/.test(dest)) {
+                        throw new Error(`Invalid destination name: "${dest}"`)
+                    }
                     result.addDestination(dest)
                 }
             })

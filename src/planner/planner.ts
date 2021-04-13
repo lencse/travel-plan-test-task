@@ -20,7 +20,11 @@ export default class Planner {
         if (0 === remaining.length) {
             return
         }
-        const next = remaining.filter(dest => 0 === dest.dependencies.length)[0]
+        const candidates = remaining.filter(dest => 0 === dest.dependencies.length)
+        if (0 === candidates.length) {
+            throw new Error('Circular dependency')
+        }
+        const next = candidates[0]
         const nextRemaining = remaining.filter(dest => next.name !== dest.name).map(
             dest => ({
                 name: dest.name,
