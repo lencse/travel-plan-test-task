@@ -8,8 +8,8 @@ describe('Input parser', () => {
             x =>
             y =>
         `)
-        expect(result.get('x')).toEqual([])
-        expect(result.get('y')).toEqual([])
+        expect(result.get('x')).toEqual({ name: 'x', dependencies: [] })
+        expect(result.get('y')).toEqual({ name: 'y', dependencies: [] })
     })
 
     it('Parsing lines with dependency', () => {
@@ -19,9 +19,9 @@ describe('Input parser', () => {
             y => z
             z =>
         `)
-        expect(result.get('x')).toEqual([])
-        expect(result.get('y')).toEqual([])
-        expect(result.get('z')).toEqual(['y'])
+        expect(result.get('x')).toEqual({ name: 'x', dependencies: [] })
+        expect(result.get('y')).toEqual({ name: 'y', dependencies: [] })
+        expect(result.get('z')).toEqual({ name: 'z', dependencies: ['y'] })
     })
 
 })

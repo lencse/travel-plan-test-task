@@ -1,10 +1,15 @@
 import { EOL } from 'os'
 
+interface Destination {
+    name: string
+    dependencies: string[]
+}
+
 class InputData {
 
-    private readonly destinations: Map<string, string[]> = new Map<string, string[]>()
+    private readonly destinations: Map<string, Destination> = new Map<string, Destination>()
 
-    public get(destination: string): string[] {
+    public get(destination: string): Destination {
         const result = this.destinations.get(destination)
         if (undefined === result) {
             throw new Error('Missing destination')
@@ -16,12 +21,12 @@ class InputData {
         if (this.destinations.has(destination)) {
             return
         }
-        this.destinations.set(destination, [])
+        this.destinations.set(destination, { name: destination, dependencies: [] })
     }
 
     public addDestinationWithDependency(destination: string, dependency: string): void {
         this.addDestination(destination)
-        this.destinations.get(destination)?.push(dependency)
+        this.destinations.get(destination)?.dependencies.push(dependency)
     }
 
 }
