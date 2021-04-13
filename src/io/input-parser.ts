@@ -29,6 +29,12 @@ class InputData {
         this.destinations.get(destination)?.dependencies.push(dependency)
     }
 
+    public getAllDestinations(): Destination[] {
+        const result: Destination[] = []
+        this.destinations.forEach(dest => result.push(dest))
+        return result
+    }
+
 }
 
 export default class InputParser {
@@ -38,7 +44,9 @@ export default class InputParser {
         input.trim().split(EOL).forEach(line => {
             const parts = line.trim().split('=>').map(data => data.trim())
             parts.forEach(dest => {
-                result.addDestination(dest)
+                if ('' !== dest) {
+                    result.addDestination(dest)
+                }
             })
             if ('' !== parts[1]) {
                 result.addDestinationWithDependency(parts[1], parts[0])
