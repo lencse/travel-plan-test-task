@@ -20,6 +20,7 @@
     "scripts": {
         "build": "tsc -p . --pretty",
         "test": "jest --verbose",
+        "test-compiled": "jest -c jest.compiled.config.js --verbose",
         "watch-test": "jest --watch",
         "lint": "eslint . --ext .ts",
         "lint-fix": "eslint . --ext .ts --fix"

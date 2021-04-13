@@ -37,6 +37,9 @@ jobs:
     - name: Test
       run: yarn test
 
+    - name: Test compiled code
+      run: yarn test-compiled
+
     - name: Lint
       run: yarn lint
 
