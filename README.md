@@ -22,7 +22,7 @@ This is a CLI tool to calculate optimal routes between travel destinations.
 
 ### Output format
 
-* Travel destinations are printed in the planned order in one line
+* Travel destinations are printed in the planned order in one line.
 
 ## Prerequisites
 
@@ -39,6 +39,10 @@ yarn build
 ```
 
 ### Usage
+
+The script reads from the standard input and prints the travel plan to the standard output.
+
+#### Example
 
 ```bash
 echo "
