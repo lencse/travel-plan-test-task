@@ -4,12 +4,12 @@ export default class PlanResult {
 
     private readonly destinations: Destination[] = []
 
-    public addDestination(destination: Destination): void {
-        this.destinations.push(destination)
+    public getDestinations(): Destination[] {
+        return this.destinations
     }
 
-    public asString(): string {
-        return this.destinations.map(dest => dest.name).join('')
+    public addDestination(destination: Destination): void {
+        this.destinations.push(destination)
     }
 
 }
