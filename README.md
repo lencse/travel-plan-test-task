@@ -2,6 +2,7 @@
 
 [![Node.js CI](https://github.com/lencse/travel-plan-test-task/actions/workflows/default.yml/badge.svg)](https://github.com/lencse/travel-plan-test-task/actions)
 [![Coverage Status](https://coveralls.io/repos/github/lencse/travel-plan-test-task/badge.svg?branch=main)](https://coveralls.io/github/lencse/travel-plan-test-task?branch=main)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=lencse_travel-plan-test-task&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=lencse_travel-plan-test-task)
 
 This is a CLI tool to calculate optimal routes between travel destinations.
 
